@@ -38,7 +38,9 @@ class Drupal7 extends DrupalBaseModule implements DrupalModuleInterface
         $this->validateDrupalRoot($this->config['root']);
 
         // Do a Drush-style bootstrap.
-        define('DRUPAL_ROOT', $this->config['root']);
+        if (!defined('DRUPAL_ROOT')) {
+            define('DRUPAL_ROOT', $this->config['root']);
+        }
 
         require_once DRUPAL_ROOT . '/includes/bootstrap.inc';
         drupal_override_server_variables();
