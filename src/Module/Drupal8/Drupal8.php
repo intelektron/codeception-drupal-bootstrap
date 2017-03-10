@@ -43,13 +43,16 @@ class Drupal8 extends DrupalBaseModule implements DrupalModuleInterface {
     // Get drupal site.
     $site = isset($this->config['site_dir']) && !empty($this->config['site_dir']) ? "sites/{$this->config['site_dir']}" : 'sites/default';
 
+    // Get drupal environment.
+    $env = isset($this->config['env']) && !empty($this->config['env']) ? $this->config['env'] : 'prod';
+
     // Bootstrap.
     $autoloader = require DRUPAL_ROOT . '/autoload.php';
     require_once DRUPAL_ROOT . '/core/includes/bootstrap.inc';
 
     $request = Request::createFromGlobals();
     Settings::initialize(DRUPAL_ROOT, $site, $autoloader);
-    $kernel = DrupalKernel::createFromRequest($request, $autoloader, 'prod');
+    $kernel = DrupalKernel::createFromRequest($request, $autoloader, $env);
     $kernel->boot();
     $kernel->prepareLegacyRequest($request);
   }
