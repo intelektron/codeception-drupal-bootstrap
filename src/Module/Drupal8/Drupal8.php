@@ -34,24 +34,23 @@ class Drupal8 extends DrupalBaseModule implements DrupalModuleInterface {
     if (!defined('DRUPAL_ROOT')) {
       define('DRUPAL_ROOT', $this->config['root']);
     }
+    chdir(DRUPAL_ROOT);
 
-    // @todo: multisite - currently there is no way to differentiate tests, to run only this for selected site.
     // Get drupal site.
 //    $global_config = \Codeception\Configuration::config();
 //    $site = 'default';
 //    if (isset($global_config['settings']['drupal_site'])) {
 //      $site = $global_config['settings']['drupal_site'];
 //    }
-//    $site = "sites/{$site}";
+    $site = isset($this->config['site_dir']) ? "sites/{$this->config['site_dir']}" : 'sites/default';
 
     // Bootstrap.
     $autoloader = require DRUPAL_ROOT . '/autoload.php';
     require_once DRUPAL_ROOT . '/core/includes/bootstrap.inc';
+
     $request = Request::createFromGlobals();
-    // @todo: multisite
-//    Settings::initialize(dirname(dirname(DRUPAL_ROOT)), $site, $autoloader);
-    Settings::initialize(dirname(dirname(DRUPAL_ROOT)), DrupalKernel::findSitePath($request, TRUE, DRUPAL_ROOT), $autoloader);
-    $kernel = DrupalKernel::createFromRequest($request, $autoloader, 'prod', TRUE, DRUPAL_ROOT);
+    Settings::initialize(DRUPAL_ROOT, $site, $autoloader);
+    $kernel = DrupalKernel::createFromRequest($request, $autoloader, 'prod');
     $kernel->boot();
     $kernel->prepareLegacyRequest($request);
   }
