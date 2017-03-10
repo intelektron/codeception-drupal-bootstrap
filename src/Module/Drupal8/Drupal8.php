@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Codeception Drupal 8 bootstrap.
+ */
+
 namespace Codeception\Module\Drupal8;
 
 use Codeception\Module\DrupalBaseModule;
@@ -26,8 +31,7 @@ class Drupal8 extends DrupalBaseModule implements DrupalModuleInterface {
   /**
    * { @inheritdoc }
    */
-  public function bootstrapDrupal()
-  {
+  public function bootstrapDrupal() {
     $this->config['root'] = $this->getDrupalRoot();
     $this->validateDrupalRoot($this->config['root']);
 
@@ -37,11 +41,6 @@ class Drupal8 extends DrupalBaseModule implements DrupalModuleInterface {
     chdir(DRUPAL_ROOT);
 
     // Get drupal site.
-//    $global_config = \Codeception\Configuration::config();
-//    $site = 'default';
-//    if (isset($global_config['settings']['drupal_site'])) {
-//      $site = $global_config['settings']['drupal_site'];
-//    }
     $site = isset($this->config['site_dir']) ? "sites/{$this->config['site_dir']}" : 'sites/default';
 
     // Bootstrap.
@@ -58,8 +57,7 @@ class Drupal8 extends DrupalBaseModule implements DrupalModuleInterface {
   /**
    * { @inheritdoc }
    */
-  public function validateDrupalRoot($root)
-  {
+  public function validateDrupalRoot($root) {
     if (!file_exists($root . '/autoload.php') || !file_exists($root . '/core/includes/bootstrap.inc')) {
       throw new DrupalNotFoundException('Drupal not found at ' . $root . '.');
     }
