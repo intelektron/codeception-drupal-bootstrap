@@ -14,8 +14,8 @@ use Drupal\Core\Site\Settings;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Class Drupal
- * @package Codeception\Module
+ * Class Drupal8
+ * @package Codeception\Module\Drupal8
  */
 class Drupal8 extends DrupalBaseModule implements DrupalModuleInterface {
 
