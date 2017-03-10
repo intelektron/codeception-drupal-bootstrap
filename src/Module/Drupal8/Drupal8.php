@@ -41,7 +41,7 @@ class Drupal8 extends DrupalBaseModule implements DrupalModuleInterface {
     chdir(DRUPAL_ROOT);
 
     // Get drupal site.
-    $site = isset($this->config['site_dir']) ? "sites/{$this->config['site_dir']}" : 'sites/default';
+    $site = isset($this->config['site_dir']) && !empty($this->config['site_dir']) ? "sites/{$this->config['site_dir']}" : 'sites/default';
 
     // Bootstrap.
     $autoloader = require DRUPAL_ROOT . '/autoload.php';
