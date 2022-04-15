@@ -1,18 +1,22 @@
 {
-    "name": "droptica/codeception-drupal-bootstrap",
+    "name": "intelektron/codeception-drupal-bootstrap",
     "description": "A module for Codeception that exposes the Drupal API to test suites.",
     "license": "MIT",
     "authors": [
         {
             "name": "Chapabu",
             "email": "chapabu101@gmail.com"
+        },
+        {
+            "name": "Grzegorz Pietrzak",
+            "email": "grzegorz.pietrzak@gmail.com"
         }
     ],
     "keywords": ["codeception", "test", "testing", "drupal"],
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "codeception/codeception": "2.*"
+        "codeception/codeception": "^4.0"
     },
     "autoload": {
         "psr-4": {
@@ -21,7 +25,6 @@
     },
     "autoload-dev": {
         "files": [
-            "tests/unit/Drupal7/Drupal7AssertionCestBase.php",
             "vendor/codeception/codeception/tests/unit/Codeception/Command/BaseCommandRunner.php"
         ]
     },
@@ -31,25 +34,8 @@
         "pfaocle/codeception-module-drupal-user-registry": "A Codeception module for managing test users."
     },
     "require-dev": {
-        "squizlabs/php_codesniffer": "2.1.0",
-        "satooshi/php-coveralls": "dev-master",
-        "mikey179/vfsstream": "1.4.*",
-        "phpspec/prophecy": "~1.3@dev"
-    },
-    "repositories": [
-        {
-            "type": "package",
-            "package": {
-                "name": "drupal/drupal",
-                "version": "7.34",
-                "dist": {
-                    "type": "zip",
-                    "url": "http://ftp.drupal.org/files/projects/drupal-7.34.zip"
-                }
-            }
-        }
-    ],
-    "scripts": {
-        "testinit": "./testinit.sh"
+        "satooshi/php-coveralls": "^2.0",
+        "mikey179/vfsstream": "^1.4",
+        "phpspec/prophecy": "^1.3"
     }
 }
