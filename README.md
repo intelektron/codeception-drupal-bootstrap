@@ -2,7 +2,7 @@
 
 This module aims to allow tests to use the Drupal API during testing. This allows for better functional testing of your Drupal sites.
 
-**This is a fork for Codeception 4.x**
+**This is a fork for Codeception 2.x-4.x and Drupal 7.x-9.x**
 
 It also makes test driven development with Drupal significantly easier, as you can make assertions on items that you create through the UI.
 
